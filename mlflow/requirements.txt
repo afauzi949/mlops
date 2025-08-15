@@ -1,0 +1,12 @@
+mlflow
+python-dotenv
+joblib
+scikit-learn
+pandas
+psycopg2-binary
+boto3
+xgboost
+fastapi
+uvicorn
+prometheus_fastapi_instrumentator
+prometheus_client
