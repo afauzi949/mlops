@@ -162,7 +162,7 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     depends_on:
       - postgres
-      - mlflow-fastapi-app
+      - fastapi-app
 
 volumes:
   pg_data:

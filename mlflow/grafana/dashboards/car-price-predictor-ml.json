@@ -12,7 +12,7 @@
         "type": "stat",
         "targets": [
           {
-            "expr": "up{job=\"mlflow-fastapi-app\"}",
+            "expr": "up{job=\"fastapi-app\"}",
             "legendFormat": "FastAPI Backend"
           },
           {
@@ -47,10 +47,10 @@
       {
         "id": 2,
         "title": "Prediction Request Rate",
-        "type": "graph",
+        "type": "timeseries",
         "targets": [
           {
-            "expr": "rate(http_requests_total{job=\"mlflow-fastapi-app\", handler=\"/predict\"}[5m])",
+            "expr": "rate(http_requests_total{job=\"fastapi-app\", handler=\"/predict\"}[5m])",
             "legendFormat": "Predictions/sec"
           }
         ],
@@ -103,14 +103,14 @@
       {
         "id": 3,
         "title": "Prediction Response Time",
-        "type": "graph",
+        "type": "timeseries",
         "targets": [
           {
-            "expr": "histogram_quantile(0.95, rate(http_request_duration_seconds_bucket{job=\"mlflow-fastapi-app\", handler=\"/predict\"}[5m]))",
+            "expr": "histogram_quantile(0.95, rate(http_request_duration_seconds_bucket{job=\"fastapi-app\", handler=\"/predict\"}[5m]))",
             "legendFormat": "95th percentile"
           },
           {
-            "expr": "histogram_quantile(0.50, rate(http_request_duration_seconds_bucket{job=\"mlflow-fastapi-app\", handler=\"/predict\"}[5m]))",
+            "expr": "histogram_quantile(0.50, rate(http_request_duration_seconds_bucket{job=\"fastapi-app\", handler=\"/predict\"}[5m]))",
             "legendFormat": "50th percentile"
           }
         ],
@@ -164,18 +164,18 @@
       {
         "id": 4,
         "title": "HTTP Status Codes",
-        "type": "graph",
+        "type": "timeseries",
         "targets": [
           {
-            "expr": "rate(http_requests_total{job=\"mlflow-fastapi-app\", handler=\"/predict\", status=~\"2..\"}[5m])",
+            "expr": "rate(http_requests_total{job=\"fastapi-app\", handler=\"/predict\", status=~\"2..\"}[5m])",
             "legendFormat": "2xx Success"
           },
           {
-            "expr": "rate(http_requests_total{job=\"mlflow-fastapi-app\", handler=\"/predict\", status=~\"4..\"}[5m])",
+            "expr": "rate(http_requests_total{job=\"fastapi-app\", handler=\"/predict\", status=~\"4..\"}[5m])",
             "legendFormat": "4xx Client Error"
           },
           {
-            "expr": "rate(http_requests_total{job=\"mlflow-fastapi-app\", handler=\"/predict\", status=~\"5..\"}[5m])",
+            "expr": "rate(http_requests_total{job=\"fastapi-app\", handler=\"/predict\", status=~\"5..\"}[5m])",
             "legendFormat": "5xx Server Error"
           }
         ],
@@ -228,14 +228,14 @@
       {
         "id": 5,
         "title": "Container CPU Usage",
-        "type": "graph",
+        "type": "timeseries",
         "targets": [
           {
             "expr": "rate(container_cpu_usage_seconds_total{name=~\".*car-price-predictor.*\"}[5m]) * 100",
             "legendFormat": "Frontend CPU %"
           },
           {
-            "expr": "rate(container_cpu_usage_seconds_total{name=~\".*mlflow-fastapi-app.*\"}[5m]) * 100",
+            "expr": "rate(container_cpu_usage_seconds_total{name=~\".*fastapi-app.*\"}[5m]) * 100",
             "legendFormat": "Backend CPU %"
           }
         ],
@@ -289,14 +289,14 @@
       {
         "id": 6,
         "title": "Container Memory Usage",
-        "type": "graph",
+        "type": "timeseries",
         "targets": [
           {
             "expr": "container_memory_usage_bytes{name=~\".*car-price-predictor.*\"} / 1024 / 1024",
             "legendFormat": "Frontend Memory (MB)"
           },
           {
-            "expr": "container_memory_usage_bytes{name=~\".*mlflow-fastapi-app.*\"} / 1024 / 1024",
+            "expr": "container_memory_usage_bytes{name=~\".*fastapi-app.*\"} / 1024 / 1024",
             "legendFormat": "Backend Memory (MB)"
           }
         ],
@@ -353,7 +353,7 @@
         "type": "stat",
         "targets": [
           {
-            "expr": "increase(http_requests_total{job=\"mlflow-fastapi-app\", handler=\"/predict\", status=~\"2..\"}[24h])",
+            "expr": "increase(http_requests_total{job=\"fastapi-app\", handler=\"/predict\", status=~\"2..\"}[24h])",
             "legendFormat": "Last 24h"
           }
         ],
@@ -384,7 +384,7 @@
         "type": "stat",
         "targets": [
           {
-            "expr": "rate(http_requests_total{job=\"mlflow-fastapi-app\", handler=\"/predict\", status=~\"5..\"}[5m]) / rate(http_requests_total{job=\"mlflow-fastapi-app\", handler=\"/predict\"}[5m]) * 100",
+            "expr": "rate(http_requests_total{job=\"fastapi-app\", handler=\"/predict\", status=~\"5..\"}[5m]) / rate(http_requests_total{job=\"fastapi-app\", handler=\"/predict\"}[5m]) * 100",
             "legendFormat": "Error Rate %"
           }
         ],
@@ -434,7 +434,6 @@
     "graphTooltip": 0,
     "links": [],
     "liveNow": false,
-    "panels": [],
     "schemaVersion": 27,
     "style": "dark",
     "tags": ["mlflow", "car-price", "ml-monitoring"],

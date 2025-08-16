@@ -74,7 +74,7 @@ def collect_api_metrics():
     """Collect metrics from FastAPI application"""
     try:
         # Check API health
-        response = requests.get("http://mlflow-fastapi-app-1:8005/", timeout=5)
+        response = requests.get("http://fastapi-app:8005/", timeout=5)
         if response.status_code == 200:
             print("API is healthy")
     except Exception as e:
@@ -104,7 +104,7 @@ def collect_prediction_metrics():
         
         start_time = time.time()
         response = requests.post(
-            "http://mlflow-fastapi-app-1:8005/predict",
+            "http://fastapi-app:8005/predict",
             json=test_data,
             timeout=10
         )

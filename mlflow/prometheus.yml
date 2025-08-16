@@ -32,6 +32,13 @@ scrape_configs:
     metrics_path: '/metrics'
     scrape_interval: 30s
 
+  # FastAPI application metrics
+  - job_name: 'fastapi-app'
+    static_configs:
+      - targets: ['fastapi-app:8005']
+    metrics_path: '/metrics'
+    scrape_interval: 30s
+
   # cAdvisor for container metrics
   - job_name: 'cadvisor'
     static_configs:
