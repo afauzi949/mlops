@@ -26,9 +26,9 @@ const carFormSchema = z.object({
   enginetype: z.string().min(1, 'Engine type is required'),
   cylindernumber: z.string().min(1, 'Cylinder number is required'),
   fuelsystem: z.string().min(1, 'Fuel system is required'),
-  horsepower: z.number().min(50).max(300),
-  peakrpm: z.number().min(4000).max(7000),
-  citympg: z.number().min(10).max(50),
+  horsepower: z.number().int().min(50).max(300),
+  peakrpm: z.number().int().min(4000).max(7000),
+  citympg: z.number().int().min(10).max(50),
 });
 
 export function CarPredictionForm() {
