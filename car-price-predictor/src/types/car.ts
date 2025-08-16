@@ -1,8 +1,6 @@
 export interface CarData {
   car_ID: number;
-  symboling: number;
-  carbrand: string;
-  cartype: string;
+  CarName: string;
   fueltype: string;
   aspiration: string;
   doornumber: string;
@@ -10,21 +8,13 @@ export interface CarData {
   drivewheel: string;
   enginelocation: string;
   wheelbase: number;
-  carlength: number;
-  carwidth: number;
   carheight: number;
-  curbweight: number;
   enginetype: string;
   cylindernumber: string;
-  enginesize: number;
   fuelsystem: string;
-  boreratio: number;
-  stroke: number;
-  compressionratio: number;
   horsepower: number;
   peakrpm: number;
   citympg: number;
-  highwaympg: number;
 }
 
 export interface PredictionResponse {
@@ -34,9 +24,7 @@ export interface PredictionResponse {
 }
 
 export interface CarFormData {
-  symboling: number;
-  carbrand: string;
-  cartype: string;
+  CarName: string;
   fueltype: string;
   aspiration: string;
   doornumber: string;
@@ -44,19 +32,11 @@ export interface CarFormData {
   drivewheel: string;
   enginelocation: string;
   wheelbase: number;
-  carlength: number;
-  carwidth: number;
   carheight: number;
-  curbweight: number;
   enginetype: string;
   cylindernumber: string;
-  enginesize: number;
   fuelsystem: string;
-  boreratio: number;
-  stroke: number;
-  compressionratio: number;
   horsepower: number;
   peakrpm: number;
   citympg: number;
-  highwaympg: number;
 }

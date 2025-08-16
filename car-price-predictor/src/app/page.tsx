@@ -132,7 +132,7 @@ export default function Home() {
                 Comprehensive Analysis
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Analyzes 25+ vehicle specifications including engine, dimensions, and performance metrics.
+                Analyzes 15 key vehicle specifications including engine, dimensions, and performance metrics.
               </p>
             </div>
             

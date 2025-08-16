@@ -38,27 +38,16 @@ export function BatchPrediction() {
           
           headers.forEach((header, index) => {
             const value = values[index];
-            if (header === 'car_ID' || header === 'symboling' || 
-                header === 'wheelbase' || header === 'carlength' || 
-                header === 'carwidth' || header === 'carheight' || 
-                header === 'curbweight' || header === 'enginesize' || 
-                header === 'boreratio' || header === 'stroke' || 
-                header === 'compressionratio' || header === 'horsepower' || 
-                header === 'peakrpm' || header === 'citympg' || 
-                header === 'highwaympg') {
+            if (header === 'car_ID' || header === 'wheelbase' || 
+                header === 'carheight' || header === 'horsepower' || 
+                header === 'peakrpm' || header === 'citympg') {
               car[header] = parseFloat(value) || 0;
             } else {
               car[header] = value;
             }
           });
           
-          // Convert carbrand and cartype to CarName for API compatibility
-          if (car.carbrand && car.cartype && !car.CarName) {
-            car.CarName = `${car.carbrand} ${car.cartype}`;
-            // Remove carbrand and cartype to avoid conflicts
-            delete car.carbrand;
-            delete car.cartype;
-          }
+
           
           // Ensure CarName exists (required by API)
           if (!car.CarName) {
