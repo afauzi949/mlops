@@ -1,55 +1,12 @@
-'use client';
-
-import { useEffect, useState } from 'react';
-import { useAuth } from '@/lib/auth-context';
 import { CarPredictionForm } from '@/components/car-prediction-form';
-import { Car, TrendingUp, Zap, Shield, FileText, LogOut, User } from 'lucide-react';
+import { Car, TrendingUp, Zap, Shield, FileText } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
 export default function Home() {
-  const { isAuthenticated, username, logout } = useAuth();
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Cek localStorage untuk autentikasi
-    const token = localStorage.getItem('authToken');
-    if (token === 'authenticated') {
-      setIsLoading(false);
-    } else {
-      // Jika belum login, redirect ke login
-      window.location.href = '/login';
-    }
-  }, []);
-
-  // Loading state
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading...</p>
-        </div>
-      </div>
-    );
-  }
-
-  // Jika belum login, tampilkan loading (akan redirect)
-  if (!isAuthenticated) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Redirecting to login...</p>
-        </div>
-      </div>
-    );
-  }
-
-  // Jika sudah login, tampilkan halaman utama dengan header yang berbeda
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
-      {/* Header dengan logout */}
+      {/* Header */}
       <header className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
@@ -66,7 +23,7 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="flex items-center space-x-4">
+            <div className="hidden md:flex items-center space-x-4">
               <div className="flex items-center space-x-4 text-sm text-gray-600 dark:text-gray-400">
                 <div className="flex items-center space-x-1">
                   <Shield className="h-4 w-4" />
@@ -81,14 +38,6 @@ export default function Home() {
                   <span>Accurate</span>
                 </div>
               </div>
-              <div className="flex items-center gap-2 text-sm text-gray-600">
-                <User className="h-4 w-4" />
-                <span>Welcome, {username}!</span>
-              </div>
-              <Button variant="outline" onClick={logout} size="sm">
-                <LogOut className="h-4 w-4 mr-2" />
-                Logout
-              </Button>
               <Link href="/batch">
                 <Button variant="outline" className="flex items-center gap-2">
                   <FileText className="h-4 w-4" />
@@ -163,20 +112,24 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Prediction Form Section */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-8">
-            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-              Car Price Prediction
-            </h3>
-            <p className="text-lg text-gray-600 dark:text-gray-300">
-              Enter car specifications to predict its market price using our AI model.
+      {/* Main Form */}
+      <main className="pb-12">
+        <CarPredictionForm />
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-t border-gray-200 dark:border-gray-700">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="text-center">
+            <p className="text-gray-600 dark:text-gray-400">
+              © 2024 Car Price Predictor. Powered by advanced machine learning technology.
+            </p>
+            <p className="text-sm text-gray-500 dark:text-gray-500 mt-2">
+              Built with Next.js, TypeScript, and Tailwind CSS
             </p>
           </div>
-          <CarPredictionForm />
         </div>
-      </section>
+      </footer>
     </div>
   );
 }
